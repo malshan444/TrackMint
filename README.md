@@ -45,6 +45,3 @@ If you want to run it on your Android phone using Android Studio:
 2. Sync the files: `npx cap sync android`
 3. Open Android Studio: `npx cap open android`
 
-## Screenshots
-
-*(You can drag and drop screenshots of your app here!)*
