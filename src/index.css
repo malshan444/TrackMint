@@ -1,0 +1,198 @@
+:root {
+  /* Base Variables */
+  --font-main: 'Figtree', system-ui, sans-serif;
+  --font-heading: 'Sora', system-ui, sans-serif;
+  --font-mono: 'Space Grotesk', ui-monospace, monospace;
+
+  /* Theme: Light (default) */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-overlay: rgba(255, 255, 255, 0.85);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  
+  --accent-primary: #047857;
+  --accent-primary-gradient: linear-gradient(135deg, #047857 0%, #059669 100%);
+  --accent-primary-rgb: 4, 120, 87;
+  --accent-hover: #065f46;
+  --accent-income: #059669;
+  --accent-income-gradient: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  --accent-expense: #dc2626;
+  --accent-expense-gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  
+  --border-color: rgba(203, 213, 225, 0.85);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+  --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+  --shadow-up: 0 -10px 30px -5px rgba(0,0,0,0.05);
+  --shadow-glow: 0 0 20px rgba(var(--accent-primary-rgb), 0.4);
+
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --bg-primary: #0f1115;
+  --bg-secondary: #161b22;
+  --bg-overlay: rgba(22, 27, 34, 0.75);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  
+  --accent-primary: #10b981;
+  --accent-primary-gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  --accent-primary-rgb: 16, 185, 129;
+  --accent-hover: #34d399;
+  --accent-income: #34d399;
+  --accent-income-gradient: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+  --accent-expense: #f87171;
+  --accent-expense-gradient: linear-gradient(135deg, #f87171 0%, #fca5a5 100%);
+  
+  --border-color: rgba(51, 65, 85, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2);
+  --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3);
+  --shadow-up: 0 -10px 30px -5px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 20px rgba(var(--accent-primary-rgb), 0.4);
+}
+
+/* System Theme prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+  [data-theme='system'] {
+    --bg-primary: #0f1115;
+    --bg-secondary: #161b22;
+    --bg-overlay: rgba(22, 27, 34, 0.75);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    
+    --accent-primary: #10b981;
+    --accent-primary-gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    --accent-primary-rgb: 16, 185, 129;
+    --accent-hover: #34d399;
+    --accent-income: #34d399;
+    --accent-income-gradient: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+    --accent-expense: #f87171;
+    --accent-expense-gradient: linear-gradient(135deg, #f87171 0%, #fca5a5 100%);
+    
+    --border-color: rgba(51, 65, 85, 0.5);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2);
+    --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3);
+    --shadow-up: 0 -10px 30px -5px rgba(0,0,0,0.3);
+    --shadow-glow: 0 0 20px rgba(var(--accent-primary-rgb), 0.4);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background-image: radial-gradient(circle at top right, rgba(var(--accent-primary-rgb), 0.05), transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.03), transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Global Transition to make Theme Swaps buttery smooth */
+div, span, p, h1, h2, h3, h4, h5, h6, nav, header, footer, section, article, label, .glass, svg {
+  transition-property: background-color, border-color, color, box-shadow, fill;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+h1, h2, h3, h4, h5, h6, .amount {
+  font-family: var(--font-heading);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s, box-shadow 0.2s;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+input, textarea {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  transition: all 0.3s;
+}
+
+/* Utilities */
+.glass {
+  background: var(--bg-overlay);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+[data-theme='dark'] .glass {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: var(--accent-primary-gradient);
+}
+.gradient-income {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: var(--accent-income-gradient);
+}
+.gradient-expense {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: var(--accent-expense-gradient);
+}
+
+/* Scrollbar hiding for clean app feel */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide number input spin buttons */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+#root {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  box-shadow: 0 0 40px rgba(0,0,0,0.03); /* slightly visible on desktop */
+}

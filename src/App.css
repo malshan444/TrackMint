@@ -1,0 +1,116 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  /* Ensure padding clears both the bottom nav and any system gesture bars */
+  padding-bottom: calc(105px + env(safe-area-inset-bottom, 0px)); 
+  /* Incorporate a permanent 24px cushion safely beneath the Android system notch/status limit */
+  padding-top: calc(24px + env(safe-area-inset-top, 24px));
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* Reduced height to precisely match modern standard but with forced baseline padding */
+  height: calc(64px + env(safe-area-inset-bottom, 0px));
+  /* Push all icons up away from the absolute bottom display edge natively */
+  padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  z-index: 40;
+  /* Ensure solid background to block text bleed from the scrollable layer */
+  background: var(--bg-primary);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.03); /* Subtle seamless shadow instead of a hard border */
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex: 1; 
+  opacity: 0.7;
+}
+
+/* Make space for the FAB in the middle */
+.nav-item:nth-child(2) {
+  margin-right: 25px;
+}
+.nav-item:nth-child(3) {
+  margin-left: 25px;
+}
+
+.nav-item.active {
+  color: var(--accent-primary);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.nav-item svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item.active svg {
+  transform: scale(1.15);
+  filter: drop-shadow(0 4px 6px rgba(var(--accent-primary-rgb), 0.3));
+}
+
+/* Floating Action Button */
+.fab {
+  position: absolute;
+  /* Push the FAB dynamically based on safe area inset to maintain proper hover distance from the navbar, updated for 64px base */
+  top: calc(-20px - (env(safe-area-inset-bottom, 0px) / 2));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent-primary-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-glow);
+  z-index: 50;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+}
+
+.fab:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 0 25px rgba(var(--accent-primary-rgb), 0.6);
+}
+
+.fab:active {
+  transform: translateX(-50%) scale(0.9);
+  box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.4);
+}
+
+.fab svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}

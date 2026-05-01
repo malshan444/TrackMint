@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Trackmint</string>
+    <string name="title_activity_main">Trackmint</string>
+    <string name="package_name">com.yourname.trackmint</string>
+    <string name="custom_url_scheme">com.yourname.trackmint</string>
+</resources>
